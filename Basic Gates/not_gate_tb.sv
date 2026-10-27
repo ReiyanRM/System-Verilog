@@ -17,4 +17,5 @@ initial begin
             $display("Test passed for a=%b, y=%b", a, y);
         end
     end
+    $finish;
 end

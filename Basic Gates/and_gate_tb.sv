@@ -18,6 +18,7 @@ initial begin
             $display("Test passed for a=%b, b=%b, y=%b", a, b, y);
         end
     end
+    $finish;
 
 end
 endmodule
