@@ -1,4 +1,4 @@
-`timescale 1ns/
+`timescale 1ns/1ps
 
 module counter_4bit_tb ;
 
@@ -27,7 +27,7 @@ endtask
 initial begin
     rst_n = 0;
     enable = 0;
-    expected_count = 4'b0000;
+    expected_count = 0;
     pass_count = 0; 
     fail_count = 0;
 
@@ -36,19 +36,22 @@ initial begin
     enable = 1;
 
     repeat (16) begin
-        #10;
-        check_count(expected_count);
+        @ (posedge clk);
         expected_count = expected_count + 1'b1;
+        #1;
+        check_count(expected_count);
     end
 
+    @(posedge clk);
     enable = 0;
     #10;
 
     repeat (5) begin
-        #10;
+        #10;s
         check_count(expected_count);
     end
 
+    @(posedge clk);
     rst_n = 0;
     #10;
     expected_count = 4'b0000;
