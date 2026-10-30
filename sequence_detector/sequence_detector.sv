@@ -1,5 +1,5 @@
 module sequence_detector(input clk , rst_n , din ,
-                         output dedected_signal);
+                         output detected_signal);
  
  
   typedef enum logic [2:0] { s0 ,s1, s10, s101, s1011} state_t;
@@ -24,6 +24,6 @@ module sequence_detector(input clk , rst_n , din ,
   endcase 
   end 
   
-  assign dedected_signal = ( state == s1011);
+  assign detected_signal = ( state == s1011);
   
 endmodule
